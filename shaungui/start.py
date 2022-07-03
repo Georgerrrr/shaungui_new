@@ -1,6 +1,6 @@
 import glfw
 
-glfw.init()
+glfw.init() 
 
 windows = []
 
@@ -13,7 +13,7 @@ def start():
     glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, True)
 
     while windows:
-        
+        print(len(windows))
         for window in windows:
             window.render()
 
@@ -21,4 +21,10 @@ def start():
     glfw.terminate()
 
 def add_window(window):
+    if len(windows) >= 1:
+        print("Warning: Only One Window Can Be Opened At One Point In Time")
+        return
     windows.append(window)
+
+def remove_window(window):
+    windows.remove(window)

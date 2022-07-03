@@ -2,7 +2,7 @@ import glfw
 from OpenGL import GL
 import pyrr
 
-from .start import add_window
+from .start import add_window, remove_window
 from .place_system.place_system import PlaceSystem
 from .grid_system.grid_system import GridSystem
 from .quad.quad_drawer import QuadDrawer
@@ -37,6 +37,9 @@ class Window():
         self.widgets = []
     
     def render(self):
+        if glfw.window_should_close(self.glfw_window):
+            remove_window(self)
+
         glfw.make_context_current(self.glfw_window)
         GL.glViewport(0, 0, self.width, self.height)
 
